@@ -17,8 +17,8 @@ const Navbar = () => {
       <div className="container">
         <div className="navbar justify-between">
           <div>
-            <NavLink className="font-bold text-2xl" to="/home">
-              Home
+            <NavLink className="font-bold text-primary text-2xl" to="/home">
+              Dental care
             </NavLink>
           </div>
           <div>
