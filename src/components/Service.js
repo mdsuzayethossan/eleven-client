@@ -1,11 +1,19 @@
-import React from "react";
-import Card from "./Card";
+import React, { useEffect, useState } from "react";
+import ServicesCard from "./ServicesCard";
 import { Link } from "react-router-dom";
 const Service = () => {
+  const [serviceload, setServiceLoad] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/service")
+      .then((res) => res.json())
+      .then((data) => setServiceLoad(data));
+  }, []);
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 container mt-20">
-        <Card></Card>
+        {serviceload.map((service) => (
+          <ServicesCard key={service._id} services={service}></ServicesCard>
+        ))}
       </div>
       <div className="w-full text-center">
         <Link

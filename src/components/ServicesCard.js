@@ -1,14 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Card = () => {
+const ServicesCard = ({ services }) => {
+  const { _id, name, description, price, image } = services;
   return (
     <div className="card bg-base-100 shadow-xl">
       <figure>
-        <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
+        <img src={image} alt="Shoes" />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">Shoes!</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
+        <h2 className="card-title">{name}</h2>
+        <p>{description > 100 ? description.slice(100) : description}</p>
         <div className="rating rating-sm gap-1">
           <input
             type="radio"
@@ -40,11 +42,13 @@ const Card = () => {
             className="mask mask-star-2 bg-orange-400"
           />
         </div>
-        <h3 className="font-bold text-primary">$70</h3>
-        <button className="btn btn-primary mt-3">View details</button>
+        <h3 className="font-bold text-primary">${price}</h3>
+        <Link to={`/services/${_id}`} className="btn btn-primary mt-3">
+          View details
+        </Link>
       </div>
     </div>
   );
 };
 
-export default Card;
+export default ServicesCard;

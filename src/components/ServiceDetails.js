@@ -1,18 +1,20 @@
 import React from "react";
-import Card from "./Card";
-import { Link } from "react-router-dom";
+import Card from "./ServicesCard";
+import { Link, useLoaderData } from "react-router-dom";
 import Review from "./Review";
 const ServiceDetails = () => {
+  const singleDetails = useLoaderData();
+  const { _id, name, description, price, image } = singleDetails;
   return (
     <>
       <div className="container mt-20 max-w-5xl mx-auto mb-40">
         <div className="card bg-base-100">
           <figure>
-            <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
+            <img src={image} alt="Shoes" />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
+            <h2 className="card-title">{name}</h2>
+            <p>{description}</p>
             <div className="rating rating-sm gap-1">
               <input
                 type="radio"
@@ -44,7 +46,7 @@ const ServiceDetails = () => {
                 className="mask mask-star-2 bg-orange-400"
               />
             </div>
-            <h3 className="font-bold text-primary">$70</h3>
+            <h3 className="font-bold text-primary">${price}</h3>
           </div>
         </div>
         <div className="reviews-container">
