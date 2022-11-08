@@ -33,56 +33,40 @@ const Navbar = () => {
                   Home
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "text-primary font-bold" : "font-semibold"
-                  }
-                  to="/about"
-                >
-                  About
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "text-primary font-bold" : "font-semibold"
-                  }
-                  to="/feature"
-                >
-                  Feature
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "text-primary font-bold" : "font-semibold"
-                  }
-                  to="/inventory"
-                >
-                  Inventory
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "text-primary font-bold" : "font-semibold"
-                  }
-                  to="/orders"
-                >
-                  Orders
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "text-primary font-bold" : "font-semibold"
-                  }
-                  to="/contact"
-                >
-                  Contact
-                </NavLink>
-              </li>
+              {user && (
+                <>
+                  <li>
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? "text-primary font-bold" : "font-semibold"
+                      }
+                      to="/my-reviews"
+                    >
+                      My reviews
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? "text-primary font-bold" : "font-semibold"
+                      }
+                      to="/add-service"
+                    >
+                      Add service
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive ? "text-primary font-bold" : "font-semibold"
+                      }
+                      to="/inventory"
+                    >
+                      Logout
+                    </NavLink>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
           <div className="flex-none">

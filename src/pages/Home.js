@@ -3,13 +3,13 @@ import AboutMe from "../components/AboutMe";
 import Banner from "../components/Banner";
 import Care from "../components/Care";
 import Footer from "../components/Footer";
-import Services from "../components/Services";
+import Service from "../components/Service";
 
 const Home = () => {
   return (
     <div>
       <Banner></Banner>
-      <Services></Services>
+      <Service></Service>
       <AboutMe></AboutMe>
       <Care></Care>
       <Footer></Footer>

@@ -5,6 +5,10 @@ import Register from "../components/Register";
 import Main from "../layouts/Main";
 import Blog from "../pages/Blog";
 import Home from "../pages/Home";
+import Services from "../components/Services";
+import ServiceDetails from "../components/ServiceDetails";
+import AddService from "../components/AddService";
+import MyReview from "../components/MyReview";
 
 export const routes = createBrowserRouter([
   {
@@ -30,6 +34,22 @@ export const routes = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog></Blog>,
+      },
+      {
+        path: "/services",
+        element: <Services></Services>,
+      },
+      {
+        path: "/services/:id",
+        element: <ServiceDetails></ServiceDetails>,
+      },
+      {
+        path: "/add-service",
+        element: <AddService></AddService>,
+      },
+      {
+        path: "/my-reviews",
+        element: <MyReview></MyReview>,
       },
     ],
   },
