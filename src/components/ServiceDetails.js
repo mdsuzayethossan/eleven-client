@@ -88,18 +88,31 @@ const ServiceDetails = () => {
         </div>
         <div className="reviews-container">
           <h3 className="text-primary text-2xl font-bold mt-8">Reviews</h3>
-          <form onSubmit={handleReviewAdd} className="card-body">
-            <div className="form-control w-96">
-              <textarea
-                name="reviewtext"
-                className="textarea textarea-secondary focus:border-0"
-                placeholder="Type your review message"
-              ></textarea>
-            </div>
-            <div className="form-control mt-6">
-              <button className="btn btn-primary w-32">Add Review</button>
-            </div>
-          </form>
+          {(user?.email && (
+            <>
+              <form onSubmit={handleReviewAdd} className="card-body">
+                <div className="form-control w-96">
+                  <textarea
+                    name="reviewtext"
+                    className="textarea textarea-secondary focus:border-0"
+                    placeholder="Type your review message"
+                  ></textarea>
+                </div>
+                <div className="form-control mt-6">
+                  <button className="btn btn-primary w-32">Add Review</button>
+                </div>
+              </form>
+            </>
+          )) || (
+            <p className="font-semiboldbold text-xl">
+              Please{" "}
+              <Link className="text-primary font-bold" to="/login">
+                login
+              </Link>{" "}
+              to add a review.
+            </p>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 container my-20">
             {allreviews.map((allreview) => (
               <Review key={allreview._id} allreview={allreview}></Review>

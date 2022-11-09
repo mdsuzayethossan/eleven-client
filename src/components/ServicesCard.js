@@ -11,7 +11,7 @@ const ServicesCard = ({ services }) => {
       <div className="card-body">
         <h2 className="card-title">{name}</h2>
         <p>
-          {description.length > 100 ? description.slice(0, 100) : description}
+          {description.length > 100 ? description.slice(0, 99) : description}
         </p>
         <div className="rating rating-sm gap-1">
           <input

@@ -16,25 +16,31 @@ const MyReview = () => {
   }, [user?.email]);
   return (
     <div className="overflow-x-auto container mt-6">
-      <table className="table table-zebra w-full">
-        <thead>
-          <tr>
-            <th>SN</th>
-            <th>Service name</th>
-            <th>Review</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {myReviews.map((review, index) => (
-            <MyReviewCard
-              key={review._id}
-              review={review}
-              index={index}
-            ></MyReviewCard>
-          ))}
-        </tbody>
-      </table>
+      {(myReviews.length < 0 && (
+        <p className="text-primary text-2xl">No reviews were added</p>
+      )) || (
+        <>
+          <table className="table table-zebra w-full">
+            <thead>
+              <tr>
+                <th>SN</th>
+                <th>Service name</th>
+                <th>Review</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {myReviews.map((review, index) => (
+                <MyReviewCard
+                  key={review._id}
+                  review={review}
+                  index={index}
+                ></MyReviewCard>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
     </div>
   );
 };
