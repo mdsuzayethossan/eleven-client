@@ -18,12 +18,10 @@ const EditReview = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.success) {
+        if (data.modifiedCount) {
           toast.success("Review has been successfully updated", {
             autoClose: 5000,
           });
-        } else {
-          toast.err(data.error);
         }
       })
       .catch((err) => toast.error(err.message));
