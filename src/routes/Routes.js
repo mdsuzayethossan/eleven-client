@@ -9,6 +9,7 @@ import Services from "../components/Services";
 import ServiceDetails from "../components/ServiceDetails";
 import AddService from "../components/AddService";
 import MyReview from "../components/MyReview";
+import EditReview from "../components/EditReview";
 
 export const routes = createBrowserRouter([
   {
@@ -57,6 +58,12 @@ export const routes = createBrowserRouter([
       {
         path: "/my-reviews",
         element: <MyReview></MyReview>,
+      },
+      {
+        path: "/review/edit/:id",
+        element: <EditReview></EditReview>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/review/${params.id}`),
       },
     ],
   },
