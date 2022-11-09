@@ -23,7 +23,7 @@ const Navbar = () => {
             </NavLink>
           </div>
           <div>
-            <ul className="flex gap-14">
+            <ul className="hidden md:flex gap-14 md:gap-8">
               <li>
                 <NavLink
                   className={({ isActive }) =>
@@ -57,12 +57,7 @@ const Navbar = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink
-                      className={({ isActive }) =>
-                        isActive ? "text-primary font-bold" : "font-semibold"
-                      }
-                      to="/inventory"
-                    >
+                    <NavLink onClick={handleSignout} className="font-semibold">
                       Logout
                     </NavLink>
                   </li>
@@ -122,14 +117,43 @@ const Navbar = () => {
                     className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
                   >
                     <li>
-                      <a className="justify-between">
-                        Profile
-                        <span className="badge">New</span>
-                      </a>
+                      <NavLink
+                        className={({ isActive }) =>
+                          isActive ? "text-primary font-bold" : "font-semibold"
+                        }
+                        to="/home"
+                      >
+                        Home
+                      </NavLink>
                     </li>
-                    <li>
-                      <a>Settings</a>
-                    </li>
+                    {user && (
+                      <>
+                        <li>
+                          <NavLink
+                            className={({ isActive }) =>
+                              isActive
+                                ? "text-primary font-bold"
+                                : "font-semibold"
+                            }
+                            to="/my-reviews"
+                          >
+                            My reviews
+                          </NavLink>
+                        </li>
+                        <li>
+                          <NavLink
+                            className={({ isActive }) =>
+                              isActive
+                                ? "text-primary font-bold"
+                                : "font-semibold"
+                            }
+                            to="/add-service"
+                          >
+                            Add service
+                          </NavLink>
+                        </li>
+                      </>
+                    )}
                     <li>
                       <button onClick={handleSignout}>Logout</button>
                     </li>

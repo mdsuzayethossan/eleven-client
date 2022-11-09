@@ -10,7 +10,9 @@ const ServicesCard = ({ services }) => {
       </figure>
       <div className="card-body">
         <h2 className="card-title">{name}</h2>
-        <p>{description > 100 ? description.slice(100) : description}</p>
+        <p>
+          {description.length > 100 ? description.slice(0, 100) : description}
+        </p>
         <div className="rating rating-sm gap-1">
           <input
             type="radio"

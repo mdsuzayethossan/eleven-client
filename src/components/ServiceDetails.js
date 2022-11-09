@@ -1,17 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Card from "./ServicesCard";
 import { Link, useLoaderData } from "react-router-dom";
 import Review from "./Review";
 import { toast } from "react-toastify";
 import { AuthContext } from "../context/AuthProvider";
 const ServiceDetails = () => {
+  const [allreviews, setAllReviews] = useState([]);
   const { user } = useContext(AuthContext);
   const singleDetails = useLoaderData();
   const { _id, name, description, price, image } = singleDetails;
+  useEffect(() => {
+    fetch("http://localhost:5000/reviews")
+      .then((res) => res.json())
+      .then((data) => setAllReviews(data));
+  }, []);
   const handleReviewAdd = (event) => {
     event.preventDefault();
     const reviewInfo = {
       serviceId: _id,
+      serviceName: name,
+      userName: user?.displayName,
+      photoURL: user?.photoURL,
       email: user?.email,
       reviewtext: event.target.reviewtext.value,
     };
@@ -24,17 +33,18 @@ const ServiceDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.acknowledged) {
           toast("Review has been successfully added", { autoClose: 5000 });
           event.target.reset();
+          const newReview = [...allreviews, reviewInfo];
+          setAllReviews(newReview);
         }
       })
       .catch((er) => console.error(er));
   };
   return (
     <>
-      <div className="container mt-20 max-w-5xl mx-auto mb-40">
+      <div className="container mt-20 max-w-6xl mx-auto mb-40">
         <div className="card bg-base-100">
           <figure>
             <img src={image} alt="Shoes" />
@@ -90,8 +100,10 @@ const ServiceDetails = () => {
               <button className="btn btn-primary w-32">Add Review</button>
             </div>
           </form>
-          <div className="reviews">
-            <Review></Review>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 container my-20">
+            {allreviews.map((allreview) => (
+              <Review key={allreview._id} allreview={allreview}></Review>
+            ))}
           </div>
         </div>
       </div>
