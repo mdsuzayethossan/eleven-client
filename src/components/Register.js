@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
-
+import { toast } from "react-toastify";
 const Register = () => {
   const [error, setError] = useState("");
   const [profileState, setProfileState] = useState("");
@@ -103,6 +103,7 @@ const Register = () => {
           form.reset();
           setError("User created successfully");
           handleUpdateUserProfile(name, photoUrl);
+          toast("User created successfully", { autoClose: 5000 });
         })
         .catch((error) => {
           const errorMessage = error.message;

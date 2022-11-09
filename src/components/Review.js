@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/AuthProvider";
 
 const Review = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const [myReviews, setMyReviews] = useState();
+  useEffect(() => {
+    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          logOut();
+        }
+        return res.json();
+      })
+      .then((data) => setMyReviews(data));
+  }, [user?.email, logOut]);
   return (
     <div className="card w-96 bg-primary text-primary-content">
       <div className="card-body">

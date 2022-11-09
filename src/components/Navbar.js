@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  console.log(user);
   const handleSignout = () => {
     logOut()
       .then(() => {
@@ -113,7 +114,7 @@ const Navbar = () => {
                     className="btn btn-ghost btn-circle avatar"
                   >
                     <div className="w-10 rounded-full">
-                      <img src="https://placeimg.com/80/80/people" />
+                      <img src={user?.photoURL} />
                     </div>
                   </label>
                   <ul
