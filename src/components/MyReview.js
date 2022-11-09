@@ -27,7 +27,9 @@ const MyReview = () => {
         .then((data) => {
           console.log(data);
           if (data.deletedCount > 0) {
-            toast("Review has been deleted successfully", { autoClose: 5000 });
+            toast.success("Review has been deleted successfully", {
+              autoClose: 5000,
+            });
             const remaining = myReviews.filter((revw) => revw._id !== id);
             setMyReviews(remaining);
           }

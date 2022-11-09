@@ -10,7 +10,7 @@ const ServiceDetails = () => {
   const singleDetails = useLoaderData();
   const { _id, name, description, price, image } = singleDetails;
   useEffect(() => {
-    fetch("http://localhost:5000/reviews")
+    fetch(`http://localhost:5000/reviews/${_id}`)
       .then((res) => res.json())
       .then((data) => setAllReviews(data));
   }, []);

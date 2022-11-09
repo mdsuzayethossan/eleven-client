@@ -21,7 +21,9 @@ const AddService = () => {
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-          toast("Service has been successfully added", { autoClose: 5000 });
+          toast.success("Service has been successfully added", {
+            autoClose: 5000,
+          });
           form.reset();
         }
       })
