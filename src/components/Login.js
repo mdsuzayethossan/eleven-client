@@ -31,7 +31,22 @@ const Login = () => {
       signIn(email, password)
         .then((userCredential) => {
           const user = userCredential.user;
+          const currentUser = {
+            email: user.email,
+          };
           form.reset();
+          fetch("http://localhost:5000/jwt", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(currentUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              localStorage.setItem("token", data.token);
+              navigate(from, { replace: true });
+            });
           navigate(from, { replace: true });
         })
         .catch((error) => {
@@ -48,6 +63,21 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
+        const currentUser = {
+          email: user.email,
+        };
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem("token", data.token);
+            navigate(from, { replace: true });
+          });
         navigate(from, { replace: true });
       })
       .catch((error) => setError(error.message));

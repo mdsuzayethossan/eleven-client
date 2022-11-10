@@ -28,4 +28,4 @@ Hosted in Firebase -> [Dental Care](https://assignment-eleven-435b0.web.app)
 * /add-service
   - You can also add any service that will show in the services section first.
 * For responsive design used Tailwind css and also daisyui.
-* To download pdf used react-to-pdf
+* To full screen view a service image, click on service image.

@@ -3,20 +3,17 @@ import { AuthContext } from "../context/AuthProvider";
 import MyReviewCard from "./MyReviewCard";
 import { toast } from "react-toastify";
 import useTitle from "../hooks/useTitle";
+import { Link } from "react-router-dom";
 const MyReview = () => {
   useTitle("My-Reviews");
   const { user, logOut } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
-  console.log(myReviews);
   useEffect(() => {
-    fetch(
-      `https://assignment-eleven-server-kappa.vercel.app/reviews?email=${user?.email}`,
-      {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    )
+    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setMyReviews(data));
   }, [user?.email]);
@@ -46,32 +43,45 @@ const MyReview = () => {
   };
   return (
     <div className="overflow-x-auto container mt-6">
-      {(myReviews.length < 1 && (
-        <p className="text-primary text-2xl text-center font-bold flex items-center h-screen justify-center">
-          No reviews were added
+      {(myReviews.message === "Unauthorized access" && (
+        <p className="font-semiboldbold text-xl text-center">
+          {" "}
+          Unauthorized access Please{" "}
+          <Link className="text-primary font-bold" to="/login">
+            login
+          </Link>{" "}
         </p>
       )) || (
         <>
-          <table className="table table-zebra w-full">
-            <thead>
-              <tr>
-                <th>SN</th>
-                <th>Service name</th>
-                <th>Review</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {myReviews.map((review, index) => (
-                <MyReviewCard
-                  key={review._id}
-                  review={review}
-                  index={index}
-                  handleDelete={handleDelete}
-                ></MyReviewCard>
-              ))}
-            </tbody>
-          </table>
+          {" "}
+          {(myReviews.length < 1 && (
+            <p className="text-primary text-2xl text-center font-bold flex items-center h-screen justify-center">
+              No reviews were added
+            </p>
+          )) || (
+            <>
+              <table className="table table-zebra w-full">
+                <thead>
+                  <tr>
+                    <th>SN</th>
+                    <th>Service name</th>
+                    <th>Review</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {myReviews.map((review, index) => (
+                    <MyReviewCard
+                      key={review._id}
+                      review={review}
+                      index={index}
+                      handleDelete={handleDelete}
+                    ></MyReviewCard>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          )}
         </>
       )}
     </div>
