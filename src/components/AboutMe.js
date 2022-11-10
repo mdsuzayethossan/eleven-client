@@ -3,7 +3,10 @@ import React from "react";
 const AboutMe = () => {
   return (
     <>
-      <div className="hero my-20">
+      <h2 className="font-semibold text-4xl text-center my-16">
+        Get dentist appointment
+      </h2>
+      <div className="hero mb-20">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">About</h1>
