@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -15,11 +16,15 @@ const Banner = () => {
             Find Your Perfect Dentist Anytime, Anywhere
           </h1>
           <p className="mb-5">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            Prof.Dr B.A.K Azad is one of the most renowned Dentist in
+            Bangladesh. He passed Bachelor of Dental surgery (BDS) from Dhaka
+            Dental College in 1984. Then he took Diploma in Dental Surgery (DDS)
+            from the University of Dhaka in 1988. After that Dr. Azad completed
+            his MCPS from Bangladesh College of Physicians and Surgeons.
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <Link to="/services" className="btn btn-primary">
+            See Services
+          </Link>
         </div>
       </div>
     </div>
