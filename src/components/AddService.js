@@ -1,6 +1,8 @@
 import React from "react";
 import { toast } from "react-toastify";
+import useTitle from "../hooks/useTitle";
 const AddService = () => {
+  useTitle("Add-Service");
   const handleAddService = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -10,7 +12,7 @@ const AddService = () => {
       price: form.price.value,
       description: form.description.value,
     };
-    fetch("http://localhost:5000/add-service", {
+    fetch("https://assignment-eleven-server-kappa.vercel.app/add-service", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -9,13 +9,16 @@ const EditReview = () => {
       reviewtext: event.target.reviewtext.value,
     };
     console.log(updateInfo);
-    fetch(`http://localhost:5000/review/update/${_id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updateInfo),
-    })
+    fetch(
+      `https://assignment-eleven-server-kappa.vercel.app/review/update/${_id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updateInfo),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount) {

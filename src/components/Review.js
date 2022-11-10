@@ -1,22 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
 const Review = ({ allreview }) => {
-  // const { user, logOut } = useContext(AuthContext);
-  // const [myReviews, setMyReviews] = useState();
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
-  //     headers: {
-  //       authorization: `Bearer ${localStorage.getItem("token")}`,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       if (res.status === 401 || res.status === 403) {
-  //         logOut();
-  //       }
-  //       return res.json();
-  //     })
-  //     .then((data) => setMyReviews(data));
-  // }, [user?.email, logOut]);
   const { serviceName, userName, photoURL, reviewtext } = allreview;
 
   return (

@@ -4,13 +4,16 @@ import { Link, useLoaderData } from "react-router-dom";
 import Review from "./Review";
 import { toast } from "react-toastify";
 import { AuthContext } from "../context/AuthProvider";
+import useTitle from "../hooks/useTitle";
 const ServiceDetails = () => {
+  useTitle("Service Details");
   const [allreviews, setAllReviews] = useState([]);
   const { user } = useContext(AuthContext);
   const singleDetails = useLoaderData();
   const { _id, name, description, price, image } = singleDetails;
+  //get reviews according to specific id
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/${_id}`)
+    fetch(`https://assignment-eleven-server-kappa.vercel.app/reviews/${_id}`)
       .then((res) => res.json())
       .then((data) => setAllReviews(data));
   }, []);
@@ -24,7 +27,8 @@ const ServiceDetails = () => {
       email: user?.email,
       reviewtext: event.target.reviewtext.value,
     };
-    fetch("http://localhost:5000/add-review", {
+    //add review
+    fetch("https://assignment-eleven-server-kappa.vercel.app/add-review", {
       method: "POST",
       headers: {
         "content-type": "application/json",

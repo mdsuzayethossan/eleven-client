@@ -2,16 +2,21 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import MyReviewCard from "./MyReviewCard";
 import { toast } from "react-toastify";
+import useTitle from "../hooks/useTitle";
 const MyReview = () => {
+  useTitle("My-Reviews");
   const { user, logOut } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
   console.log(myReviews);
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    })
+    fetch(
+      `https://assignment-eleven-server-kappa.vercel.app/reviews?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => setMyReviews(data));
   }, [user?.email]);
@@ -20,9 +25,12 @@ const MyReview = () => {
       "Are you sure, you want to delete this review?"
     );
     if (proceed) {
-      fetch(`http://localhost:5000/review/delete/${id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://assignment-eleven-server-kappa.vercel.app/review/delete/${id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

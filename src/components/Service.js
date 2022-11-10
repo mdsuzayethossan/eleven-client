@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Service = () => {
   const [serviceload, setServiceLoad] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/service")
+    fetch("https://assignment-eleven-server-kappa.vercel.app/service")
       .then((res) => res.json())
       .then((data) => setServiceLoad(data));
   }, []);

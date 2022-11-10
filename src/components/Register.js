@@ -2,7 +2,9 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 import { toast } from "react-toastify";
+import useTitle from "../hooks/useTitle";
 const Register = () => {
+  useTitle("Register");
   const [error, setError] = useState("");
   const [profileState, setProfileState] = useState("");
   const [sentEmail, setSentEmail] = useState("");

@@ -38,13 +38,16 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/services",
-        loader: () => fetch("http://localhost:5000/services"),
+        loader: () =>
+          fetch("https://assignment-eleven-server-kappa.vercel.app/services"),
         element: <Services></Services>,
       },
       {
         path: "/services/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(
+            `https://assignment-eleven-server-kappa.vercel.app/services/${params.id}`
+          ),
         element: <ServiceDetails></ServiceDetails>,
       },
       {
@@ -67,7 +70,9 @@ export const routes = createBrowserRouter([
         path: "/review/edit/:id",
         element: <EditReview></EditReview>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/review/${params.id}`),
+          fetch(
+            `https://assignment-eleven-server-kappa.vercel.app/review/${params.id}`
+          ),
       },
     ],
   },
