@@ -9,11 +9,14 @@ const MyReview = () => {
   const { user, logOut } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    })
+    fetch(
+      `https://assignment-eleven-server-kappa.vercel.app/reviews?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => setMyReviews(data));
   }, [user?.email]);

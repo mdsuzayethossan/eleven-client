@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 import { toast } from "react-toastify";
 import useTitle from "../hooks/useTitle";
 const Register = () => {
+  const navigate = useNavigate();
   useTitle("Register");
   const [error, setError] = useState("");
   const [profileState, setProfileState] = useState("");
@@ -104,8 +105,23 @@ const Register = () => {
           const user = userCredential.user;
           form.reset();
           setError("User created successfully");
+          navigate("/");
           handleUpdateUserProfile(name, photoUrl);
           toast("User created successfully", { autoClose: 5000 });
+          const currentUser = {
+            email: user.email,
+          };
+          fetch("https://assignment-eleven-server-kappa.vercel.app/jwt", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(currentUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              localStorage.setItem("token", data.token);
+            });
         })
         .catch((error) => {
           const errorMessage = error.message;

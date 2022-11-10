@@ -35,7 +35,8 @@ const Login = () => {
             email: user.email,
           };
           form.reset();
-          fetch("http://localhost:5000/jwt", {
+          navigate(from, { replace: true });
+          fetch("https://assignment-eleven-server-kappa.vercel.app/jwt", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -45,9 +46,7 @@ const Login = () => {
             .then((res) => res.json())
             .then((data) => {
               localStorage.setItem("token", data.token);
-              navigate(from, { replace: true });
             });
-          navigate(from, { replace: true });
         })
         .catch((error) => {
           const errorMessage = error.message;
@@ -66,7 +65,7 @@ const Login = () => {
         const currentUser = {
           email: user.email,
         };
-        fetch("http://localhost:5000/jwt", {
+        fetch("https://assignment-eleven-server-kappa.vercel.app/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",
